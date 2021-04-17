@@ -4,7 +4,6 @@ import sys
 
 card_values = {"A":11, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9, "10":10, "J":10, "Q":10, "K":10}
 options = ["Hit", "Stand"]
-subtract_count = 0
 
 class Card:
     def __init__(self, suit, val):
@@ -37,8 +36,15 @@ class Deck:
             self.cards[i], self.cards[randint] = self.cards[randint], self.cards[i]
             
     def draw_card(self):
-        card = self.cards[-1]
-        del self.cards[-1]
+        try:
+            card = self.cards[-1]
+            del self.cards[-1]
+        except IndexError:
+            print("The Deck has ran out of cards. The game will end.")
+            print("Thanks for playing! Created by skathii; (http://www.github.com/skathii)")
+            print("The program will terminate in three seconds.")
+            time.sleep(3)
+            sys.exit()
     
         return card
             
@@ -47,7 +53,6 @@ class Player:
         self.cards_dealt = []
         self.Dealer = Dealer
         self.score = 0
-        self.subtract_count = 0
     
     def view_hand(self):
         for x in self.cards_dealt:
@@ -66,14 +71,15 @@ class Player:
         for x in self.cards_dealt:
             self.score += card_values[x.val]
 
-        if self.score > 21:
-            for x in self.cards_dealt:
-                if x.val == "A":
-                    ace_count +=1
-                
-                if ace_count > self.subtract_count:
+        for x in self.cards_dealt:
+            if x.val == "A":
+                ace_count +=1
+
+        if ace_count > 0:
+            if self.score > 21:
+                for x in range(1, ace_count+1):
                     self.score -= 10
-                    self.subtract_count += 1
+
                 
     def val_dealerhand(self):
         self.score = 0
