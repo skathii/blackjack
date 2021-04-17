@@ -23,42 +23,44 @@ blackjack(1)
 gives
 ```python
 ########################
-Your current hand: [16]
-d5
-sA
+Your current hand: [19]
+s9
+hQ
 
 
 The dealers hand: [2]
 d2
 
 
-What would you like to do? [h/s]: h
+What would you like to do? [h/s]: s
 
 
 ########################
-The dealer passes you a card.
-Your current hand: [12]
-d5
-sA
-s6
+You stood on 19. The Dealers face-down card was:
+dJ
 
 
-What would you like to do? [h/s]: h
+The Dealers hand is: [12]
+The dealer gives himself a card.
+His score is now 22
+d2
+dJ
+hJ
 
 
 ########################
-The dealer passes you a card.
+Hurray! The dealer Busted with a score of 22! Congratulations!
 
 
-########################
-Oops! You busted with a score of 23. Better luck next time!
+Your final hand: [19]
+s9
+hQ
 
 
-Your final hand:
-d5
-sA
-s6
-cA
+The Dealers final hand: [22]
+d2
+dJ
+hJ
 
 
 ########################
